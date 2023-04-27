@@ -8,26 +8,25 @@ const TodoForm = () => {
     const [text, setText] = useState("")
 
     const onFormSubmit = (e) => {
-        e.preventDefault()
-        dispatch(addNewTodo(text));
-        
-    }
+      e.preventDefault();
+      dispatch(addNewTodo(text));
+      setText('');
+  }
+
     const onInputChange = (e) =>{
             setText(e.target.value)
-            console.log(text)
+           
     }
   return (
-    <Container className='mt-4'>
-        <form 
-        className='form'
-        onSubmit={onFormSubmit}
-        >
-            <input 
-            placeholder='enter your task'
-            className='input'
-            onChange={onInputChange}
+    <Container>
+      <form className="form" onSubmit={onFormSubmit}>
+            <input  
+                placeholder="Enter new todo..."
+                className="input"
+                onChange={onInputChange}
+                value={text}
             />
-        </form>
+      </form>
     </Container>
   )
 }
