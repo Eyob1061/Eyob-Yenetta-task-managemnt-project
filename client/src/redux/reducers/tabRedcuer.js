@@ -1,9 +1,9 @@
-import * as actionTypes from '../actions/type';
+import * as actionType from '../actions/type';
 
 
-export const tabReducer = (state = actionTypes.ALL_TODOS, action) => {
+export const tabReducer = (state = actionType.ALL_TODOS, action) => {
     switch (action.type) {
-        case actionTypes.TOGGLE_TAB:
+        case actionType.TOGGLE_TAB:
             return action.selected
         default: 
             return state;

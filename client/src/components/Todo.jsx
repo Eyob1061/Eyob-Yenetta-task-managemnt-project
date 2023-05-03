@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { toggleTodo, updateTodo } from "../redux/actions";
 import { deleteTodo } from "../redux/actions";
 import Container from "react-bootstrap/esm/Container";
@@ -16,18 +15,17 @@ const Todo = ({ todo }) => {
         e.preventDefault();
 
         setEditing(prevState => !prevState);
-
         dispatch(updateTodo(todo._id, text))
     }
 
     return (
         <Container>
-            <li
+        <div
             className="task"
             onClick={() => dispatch(toggleTodo(todo._id))}
             style={{
-                textDecoration: todo?.done ? 'line-through' : '',
-                color: todo?.done ? '#bdc3c7' : '#34495e'
+                textDecoration: todo.done ? 'line-through' : '',
+                color: todo.done ? '#bdc3c7' : '#34495e'
             }}
             data-testid="todo-test"
         >
@@ -46,12 +44,16 @@ const Todo = ({ todo }) => {
             </form>
 
             <span className="icon" onClick={() => dispatch(deleteTodo(todo._id))}>
-                <i className="fas fa-trash" />
+                <i 
+                style={{color: "red"}}
+                className="fas fa-trash" />
             </span>
             <span className="icon" onClick={() => setEditing(prevState => !prevState)}>
-                <i className="fas fa-pen" />
+                <i className="fas fa-pen" 
+
+                />
             </span>
-        </li>
+        </div>
         </Container>
     )
 }

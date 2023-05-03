@@ -4,10 +4,14 @@ import TodoForm from './components/TodoForm';
 import Todos from './components/Todos';
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <TodoForm />
-      <Todos />
+    <div
+    style={{marginLeft: "50%"}}
+    className='d-flex justify-content-center align-item-center w-100'>
+        <div className="App w-100">
+        <Header/>
+        <TodoForm />
+        <Todos />
+    </div>
     </div>
   );
 }

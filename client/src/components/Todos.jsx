@@ -43,7 +43,7 @@ export const Todos = () => {
     return (
         <article>
             <div>
-                <Tabs currentTab={currentTab} />
+                {/* <Tabs currentTab={currentTab} /> */}
 
                 {
                     todos.some(todo => todo.done) ? (
@@ -55,7 +55,7 @@ export const Todos = () => {
                 }
             </div>
 
-            <ul>
+           
                 {
                     getTodos().map(todo => (
                         <Todo 
@@ -64,7 +64,7 @@ export const Todos = () => {
                         />
                     ))
                 }
-            </ul>
+            
         </article>
     )
 }

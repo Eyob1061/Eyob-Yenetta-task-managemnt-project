@@ -22,6 +22,7 @@ export const getAllTodos = () => async(dispatch) => {
         console.log("error while trying to get todo lists", err.message)
     }
 }
+
 export const toggleTodo = (id) => async (dispatch) => {
     try {
         const res = await axios.get(`${API_URL}/todos/${id}`);
@@ -31,6 +32,7 @@ export const toggleTodo = (id) => async (dispatch) => {
         console.log('Error while calling getAllTodos API ', error.message);
     }
 }
+
 export const updateTodo = (id, data) => async (dispatch) => {
     try {
         const res = await axios.put(`${API_URL}/todos/${id}`, { data });
