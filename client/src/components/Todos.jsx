@@ -1,45 +1,76 @@
-import React, {useEffect} from 'react';
-import { getAllTodos } from '../redux/actions';
+import { useEffect } from 'react';
+
+import { deleteTodo, getAllTodos } from '../redux/actions/index';
+import { ALL_TODOS, DONE_TODOS, ACTIVE_TODOS } from '../redux/actions/type';
+
 import { useDispatch, useSelector } from 'react-redux';
-import Container from 'react-bootstrap/esm/Container';
-import Card from 'react-bootstrap/Card';
 
 
-const Todos = () => {
-  const dispatch  = useDispatch()
-  const todos = useSelector(state => state.todos)
-  console.log(todos)
-  useEffect(() =>{
-    dispatch(getAllTodos())
-  },[])
+// component
+import Todo from './Todo';
+import Tabs from './Tabs';
 
-  return (
-    <Container>
-      {
-        todos.map((item) =>{
-          return(
-            <Card className='mt-3' key={item._id}>
-                <Card.Body className='d-flex justify-content-between'>
-                  <div>
-                    <p>{item.data}</p>
-                  </div>
-                  <div>
-                  <span className='mx-2 cursor-pointer'>
-                    <i
-                    style={{color: "red", cursor: "pointer"}}
-                    className='fas fa-trash'/></span>
-                  <span><i
-                    style={{color: "blue", cursor: "pointer"}}
-                   className='fas fa-pen'/></span>
-                  </div>
-                </Card.Body>
-            </Card>
-          )
+
+export const Todos = () => {
+
+    const dispatch = useDispatch();
+
+    const todos = useSelector(state => state.todos);
+    const currentTab = useSelector(state => state.currentTab);
+
+    useEffect(() => {
+        dispatch(getAllTodos());
+    }, [])
+
+    const getTodos = () => {
+        if (currentTab === ALL_TODOS) {
+            return todos;
+        } else if (currentTab === ACTIVE_TODOS) {
+
+            return todos.filter(todo => !todo.done)
+        } else if (currentTab === DONE_TODOS) {
+
+            return todos.filter(todo => todo.done)
+        }else{
+          return todos;
+        }
+    }
+
+    const removeDoneTodos = () => {
+        todos.forEach(({ done, _id }) => {
+            if (done) {
+                dispatch(deleteTodo(_id));
+            }
         })
-      }
-    </Container>
+    }
 
-  )
+    return (
+        <article>
+            <div>
+                <Tabs currentTab={currentTab} />
+
+                {
+                    todos.some(todo => todo.done) ? (
+                        <button
+                            onClick={removeDoneTodos}
+                            className="button clear"
+                        >Remove Done Todos</button>
+                    ) : null    
+                }
+            </div>
+
+            <ul>
+                {
+                    getTodos().map(todo => (
+                        <Todo 
+                            key={todo._id}
+                            todo={todo}
+                        />
+                    ))
+                }
+            </ul>
+        </article>
+    )
 }
 
-export default Todos
+export default Todos;

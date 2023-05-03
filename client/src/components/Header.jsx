@@ -4,7 +4,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import logo from "../assets/logo2.png"
 const Header = () => {
   return (
-    <Navbar bg="dark" variant="dark">
+    <Container>
+      <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">
             <img
@@ -18,6 +19,8 @@ const Header = () => {
           </Navbar.Brand>
         </Container>
       </Navbar>
+    </Container>
+    
   )
 }
 

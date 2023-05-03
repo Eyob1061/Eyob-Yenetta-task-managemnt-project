@@ -1,8 +1,8 @@
-import todo from "../model/Todo.js"
+import Todo from "../model/Todo.js"
 
 export const addTodo = async(req, res) =>{
     try{
-        const newTodo = await todo.create({
+        const newTodo = await Todo.create({
             data: req.body.data,
             createdAt: Date.now()
     

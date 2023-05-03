@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-// const MONGODB_URL = `mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD}@cluster0.ngxl0pl.mongodb.net/?retryWrites=true&w=majority`
 const MONGODB_URL = `mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD}@cluster0.b07srsd.mongodb.net/?retryWrites=true&w=majority`;
 
 
